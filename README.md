@@ -16,6 +16,20 @@ Rust 도구 모음을 설치한 뒤 저장소 루트에서 실행하세요.
 cargo run --release -- [파일 경로]
 ```
 
+명령어로 설치하려면 저장소 루트에서 다음을 실행합니다.
+
+```sh
+cargo install --path . --locked
+san [파일 경로]
+```
+
+실행 파일 이름은 `san`입니다. 기본 설치 위치는 macOS/Linux에서
+`~/.cargo/bin/san`, Windows에서 `%USERPROFILE%\.cargo\bin\san.exe`입니다.
+`san` 명령을 찾지 못하면 해당 `bin` 폴더를 `PATH`에 추가하세요.
+Rustup으로 설치한 macOS/Linux 환경에서는 새 터미널을 열거나
+`source "$HOME/.cargo/env"`를 실행하면 됩니다. Windows에서는 Rust 설치 시
+설정된 PATH가 새 터미널에 반영되는지 확인하세요.
+
 파일 인코딩을 명시해야 한다면 다음처럼 실행합니다.
 
 ```sh

@@ -1459,7 +1459,7 @@ pub fn run() -> Result<(), String> {
                     .ok_or("인코딩은 utf8, euc-kr, johab 중 하나여야 합니다.")?,
             );
         } else if arg == "--help" || arg == "-h" {
-            println!("사용법: san-rs [--encoding utf8|euc-kr|johab] [파일]");
+            println!("사용법: san [--encoding utf8|euc-kr|johab] [파일]");
             return Ok(());
         } else if path.is_none() {
             path = Some(PathBuf::from(arg));
