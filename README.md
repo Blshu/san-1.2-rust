@@ -23,6 +23,8 @@ cargo install --path . --locked
 san [파일 경로]
 ```
 
+새 버전으로 교체할 때는 `cargo install --path . --locked --force`를 실행합니다.
+
 실행 파일 이름은 `san`입니다. 기본 설치 위치는 macOS/Linux에서
 `~/.cargo/bin/san`, Windows에서 `%USERPROFILE%\.cargo\bin\san.exe`입니다.
 `san` 명령을 찾지 못하면 해당 `bin` 폴더를 `PATH`에 추가하세요.

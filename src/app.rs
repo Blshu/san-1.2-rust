@@ -1500,6 +1500,11 @@ pub fn run() -> Result<(), String> {
             || window.is_key_down(Key::RightAlt)
             || window.is_key_down(Key::LeftSuper)
             || window.is_key_down(Key::RightSuper);
+        #[cfg(target_os = "windows")]
+        let (control, alt) = {
+            let (native_alt, altgr) = crate::windows_keys::alt_state();
+            (control && !altgr, (alt || native_alt) && !altgr)
+        };
         let shift = window.is_key_down(Key::LeftShift) || window.is_key_down(Key::RightShift);
         let mut suppress_space = false;
         for key in window.get_keys_pressed(KeyRepeat::Yes) {
@@ -1626,6 +1631,22 @@ mod tests {
         if let Mode::Drawing(draw) = &app.mode {
             assert_eq!(draw.action, DrawAction::Graphic);
         }
+    }
+
+    #[test]
+    fn alt_shortcuts_open_graphics_in_normal_and_drawing_modes() {
+        let mut app = App::new(None);
+        app.receive_key(Key::G, false, true, false);
+        assert!(matches!(app.mode, Mode::GraphicPicker(_)));
+        app.receive_key(Key::Escape, false, false, false);
+        assert!(matches!(app.mode, Mode::Normal));
+
+        app.receive_key(Key::D, false, true, false);
+        assert!(matches!(app.mode, Mode::Drawing(_)));
+        app.receive_key(Key::G, false, true, false);
+        assert!(matches!(app.mode, Mode::GraphicPicker(_)));
+        app.receive_key(Key::Escape, false, false, false);
+        assert!(matches!(app.mode, Mode::Drawing(_)));
     }
 
     fn encode_johab_for_test(text: &str) -> Vec<u8> {
