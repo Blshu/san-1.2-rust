@@ -20,3 +20,6 @@
 # Vim
 Session.vim
 .netrwhist
+
+## Rust build products
+/target/
