@@ -81,6 +81,10 @@ Windows, macOS, Linux 빌드는 GitHub Actions의 OS별 작업으로 확인하�
 브라우저 도스 에뮬레이터 번들 리포.
 <https://github.com/drypot/san-1.0-js-dos>
 
+## 설치
+```sh
+cargo install --path . --locked
+```
 ## 역사
 
 1987년, 중학교 1학년.  
